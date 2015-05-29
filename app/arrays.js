@@ -88,15 +88,12 @@ exports.arraysAnswers = {
   },
 
   square : function(arr) {
-    // this should be a `map`, but of course `reduce` can be a `map` too!
-    return _.reduce(arr, function(results, x) {
-      results.push(x * x);
-      return results;
-    }, []);
+    return _.map(arr, function(x) {
+      return x * x;
+    });
   },
 
   findAllOccurrences : function(arr, target) {
-    // should use a `map`, but `reduce` can be a `map` too!
     return _.reduce(arr, function(results, x, i) {
       if (x === target) {
         results.push(i);
