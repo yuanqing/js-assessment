@@ -5,20 +5,21 @@ exports.asyncAnswers = {
   async : function(value) {
     return {
       then: function(cb) {
-        cb(value); // uh, just call the `cb` with `value`
+        setTimeout(function() {
+          cb(value); // uh, just call the `cb` with `value`
+        }, 0); // needed to defer calling of `cb`
       }
     };
   },
 
   manipulateRemoteData : function(url) {
-    var then = function(cb) {
-      $.get(url, function(data) {
-        var names = _.pluck(data.people, 'name');
-        cb(names.sort());
-      });
-    };
     return {
-      then: then
+      then: function(cb) {
+        $.get(url, function(data) {
+          var names = _.pluck(data.people, 'name');
+          cb(names.sort());
+        });
+      }
     };
   }
 
