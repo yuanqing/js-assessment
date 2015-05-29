@@ -10,6 +10,20 @@ exports.flowControlAnswers = {
     //
     // otherwise the function should return the number, or false if no number
     // was provided or the value provided is not a number
-
+    if (!_.isNumber(num)) { // no number provided, or not a number
+      return false;
+    }
+    var isDivisibleBy3 = num % 3 === 0;
+    var isDivisibleBy5 = num % 5 === 0;
+    if (isDivisibleBy3 && isDivisibleBy5) {
+      return 'fizzbuzz';
+    }
+    if (isDivisibleBy3) {
+      return 'fizz';
+    }
+    if (isDivisibleBy5) {
+      return 'buzz';
+    }
+    return num; // otherwise return the number
   }
 };
